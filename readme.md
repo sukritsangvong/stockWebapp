@@ -27,8 +27,8 @@ After the database is implemented, ```python3 app.py localhost 5000```
 
 **Features:**
 **Graph:** 
-    * Displays stock data from the Selected Table
-    * is customizable via the display options below the graph
+    * Item 1 Displays stock data from the Selected Table
+    * Item 2 is customizable via the display options below the graph
     * Refreshes every-time a new stock or a new display option is selected
         * Also refreshes whenever the window is resized, and there is a slight delay so that it
             waits for resizing to be done before triggering a new 
