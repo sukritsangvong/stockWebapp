@@ -3,7 +3,7 @@
 This project is a final project for Carleton's Software Design Class. 
 
 To run this program, one needs to run update_database.sh to create and update postgreSQL database.
-```cd setup/ \n ./update_database.sh```
+```cd setup/ <br />  ./update_database.sh```
 
 After the database is implemented, ```python3 app.py localhost 5000```
 
