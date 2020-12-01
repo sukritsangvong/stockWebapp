@@ -9,7 +9,11 @@ cd setup/
 ./update_database.sh`
 ``` 
 
-After the database is implemented, ```python3 app.py localhost 5000```
+After the database is implemented, 
+
+```
+python3 app.py localhost 5000
+```
 
 **DATA:**  
 
