@@ -1,5 +1,10 @@
 AUTHORS: Oliver Calder and PJ Sangvong
 
+This project is a final project for Carleton's Software Design Class. 
+
+To run this program, one needs to run update_database.sh to create and update postgreSQL database.
+After the database is implemented, ```python3 app.py localhost 5000```
+
 DATA:  S&P 500 Stock Data from 1957 to current.  In particular, this includes daily stock data for
     the open, high, low and close values, as well as trading volume, of each stock in the S&P 500.
     In order to know which stocks are in the S&P 500, we pull data from Wikipedia, parse it using
