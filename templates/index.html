@@ -1,0 +1,196 @@
+<!-- Folder: webapp/templates -->
+<!-- Authors: Oliver Calder & PJ Sangvong -->
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Graph Project</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
+
+    <script type="text/javascript" src="{{url_for('static', filename='script.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon-16x16.png">
+    <link rel="manifest" href="../static/site.webmanifest">
+    
+    <script>
+    // binds Enter Key with apply search
+    $(document).keypress(function(key){
+        if (key.which == 13){
+            $("#apply-search").click();
+        }
+    });
+    </script>
+</head>
+
+<body>
+    <div id="header">
+        <div class="head-container">
+            <div class="head-text">S&P 500 Stock Data</div>
+        </div>
+    </div>
+    <div class="page-wrapper">
+        <div id="top">
+            <div id="graph-display" class="graph-display"></div>
+            <div class="graph-options flex-grid">
+                <div class="flex-col">
+                    <div class="display-options">
+                        <label for="graph-display">Display</label>
+                        <select id="display-option" name="display-option" onchange="reapplyDisplayOptions()">
+                            <option value="Price">Price in Dollar</option>
+                            <option value="Percent-Change">Percent-Change</option>
+                            <option value="Volume">Volume</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex-col">
+                    <div id="date-options">
+                        <div class='date-option ' value='week'  id="one-week" onclick='selectDateOption(this)'>1W</div>
+                        <div class='date-option selected' value='month' id="one-month" onclick='selectDateOption(this)'>1M</div>
+                        <div class='date-option' value='3month' id="three-month" onclick='selectDateOption(this)'>3M</div>
+                        <div class='date-option' value='year' id="one-year" onclick='selectDateOption(this)'>1Y</div>
+                        <div class='date-option' value='all' id="one-all" onclick='selectDateOption(this)'>ALL</div>
+                        <div class='date-option' value='custom' id="custom-date-option" onclick='selectDateOption(this)'>CUSTOM</div>
+                    </div>
+                </div>
+                <div id="dates-container" class="flex-col transparency">
+                    <div id="end-date-option"  class="end-date-option">
+                        <input type="date" id="end-date" name="end-date" value="" min="1957-03-04" readonly onchange="reapplyDisplayOptions()">
+                        <p>End Date</p>
+                    </div>
+                    <div id="start-date-option" class="start-date-option">
+                        <input type="date" id="start-date" name="start-date" value="" min="1957-03-04" readonly onchange="reapplyDisplayOptions()">
+                        <p>Start Date</p>
+                    </div>
+                </div>    
+                
+            </div>
+        </div>
+        <div id="bottom">
+            <div class="left-container">
+                <div id="filter-box" class="filter">
+                    <div class="inner-filter">
+                        <h2>Filter Options</h2>
+    
+                        <button id="reset-filter" onclick="resetFilter()">Reset Filter</button>
+                        <button id="apply-search" onclick="applyFilter()">Apply Filter</button>
+                        
+                        <div class="flex-container">
+                            <h3>Search:</h3>
+                            <input type="text" id="search-box" onfocus='displaySuggestionsOnSearchBox()' onfocusout='hideSuggestions()' name="search">
+                            <div class="suggestions-container"> 
+                                <div id="symbolHeaderContainer"></div>
+                                <div id="symbol-suggestions" class="suggestions"></div>
+                                <div id="fullnameHeaderContainer"></div>
+                                <div id="fullname-suggestions" class="suggestions"></div>
+                            </div>
+                        </div>
+                        <br>
+                        <h3>Current Stock Values:</h3>
+                        <div class="flex-container">
+                            <label for="current-min">Min:</label>
+                            <input type="text" id="current-min" name="current-min">
+                        </div>
+                        <br>
+                        <div class="flex-container">
+                            <label for="current-max">Max:</label>
+                            <input type="text" id="current-max" name="current-max">
+                        </div>
+                        <br>
+                        <br>
+                        <h3>All-time High Values:</h3>
+                        <div class="flex-container">
+                            <label for="all-time-min">Min:</label>
+                            <input type="text" id="all-time-min" name="all-time-min">
+                        </div>
+                        <br>
+                        <div class="flex-container">
+                            <label for="all-time-max">Max:</label>
+                            <input type="text" id="all-time-max" name="all-time-max">
+                        </div>
+                        <br>
+                        <br>
+                        <h3>Sectors:</h3>
+                        <input class="sector-checkbox checkbox" type="checkbox" id="communication-services" value="Communication Services">
+                        <label for="communication-services"> Communication Services</label>
+                        <br>
+                        <input class="sector-checkbox checkbox" type="checkbox" id="communication-services" value="Consumer Discretionary">
+                        <label for="communication-services">  Consumer Discretionary</label>
+                        <br>
+                        <input class="sector-checkbox checkbox" type="checkbox" id="information-technology" value="Consumer Staples">
+                        <label for="information-technology"> Consumer Staples</label>
+                        <br>
+                        <input class="sector-checkbox checkbox" type="checkbox" id="financials" value="Financials">
+                        <label for="financials"> Financials</label>
+                        <br>
+                        <input class="sector-checkbox checkbox" type="checkbox" id="health-care" value="Health Care">
+                        <label for="health-care"> Health Care</label>
+                        <br>
+                        <input class="sector-checkbox checkbox" type="checkbox" id="information-technology" value="Industrials">
+                        <label for="information-technology">  Industrials</label>
+                        <br>
+                        <input class="sector-checkbox checkbox" type="checkbox" id="information-technology" value="Information Technology">
+                        <label for="information-technology"> Information Technology</label>
+                        <br>
+                        <input class="sector-checkbox checkbox" type="checkbox" id="health-care" value="Materials">
+                        <label for="health-care"> Materials</label>
+                        <br>
+                        <input class="sector-checkbox checkbox" type="checkbox" id="information-technology" value="Real Estate">
+                        <label for="information-technology"> Real Estate</label>
+                        <br>
+                        <input class="sector-checkbox checkbox" type="checkbox" id="financials" value="Utilities">
+                        <label for="financials"> Utilities</label>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="right-container">
+                <div id='table-box' class="tables">
+                    <div class="selected">
+                        <h2>Selected Stocks</h2>
+                        <table class="sortable-table" id="selecetd-table">
+                            <thead>
+                                <tr class="header">
+                                    <th>Selected</th>
+                                    <th class="sortable-head default-sort">Symbol</th>
+                                    <th class="sortable-head">Company Name</th>
+                                    <th class="sortable-head">Sector</th>
+                                    <th class="sortable-head">Current Price</th>
+                                    <th class="sortable-head">All-time High</th>
+                                    <th class="sortable-head">Year Founded</th>
+                                    <th class="sortable-head">Date Joined</th>
+                                </tr>
+                            </thead>
+                            <tbody id="selected-tbody"></tbody>
+                        </table>
+                    </div>
+                    <div class="filtered">
+                        <h2>Searched / Filtered Results</h2>
+                        <table class="sortable-table" id="filtered-table">
+                            <thead>
+                                <tr class="header">
+                                    <th>Selected</th>
+                                    <th class="sortable-head default-sort">Symbol</th>
+                                    <th class="sortable-head">Company Name</th>
+                                    <th class="sortable-head">Sector</th>
+                                    <th class="sortable-head">Current Price</th>
+                                    <th class="sortable-head">All-time High</th>
+                                    <th class="sortable-head">Year Founded</th>
+                                    <th class="sortable-head">Date Joined</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody id="filtered-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+</body>
+</html>

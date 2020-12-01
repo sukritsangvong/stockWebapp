@@ -1,0 +1,326 @@
+/* Folder: webapp/static 
+Authors: Oliver Calder & PJ Sangvong  */
+
+body{
+    margin: 0;
+    font-family: 'DM Sans';
+}
+
+#header{
+    width: 100%;
+    overflow: hidden;
+    background-color: #d1d7d4;
+    padding: 20px 10px;
+}
+
+.head-text{
+    padding: 12px;
+    font-size: x-large;
+    color: #161c10;
+    font-weight: 900;
+}
+
+.page-wrapper{
+    margin-right: auto; 
+    margin-left:  auto;
+    width: 85%;
+}
+
+.graph-display{
+    height: 500px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.graph-element{
+    border-radius: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+.no-display{
+    font-size: 200%;
+}
+
+.no-display-container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: #f3f3f3 solid 5px;
+}
+
+.flex-grid{
+    display: flex;
+    width: 100%;
+} 
+
+#date-options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    min-width: 200px;
+}
+
+.date-option{
+    cursor: pointer;
+    font-weight: 900;
+}
+
+#date-options .selected{
+    color: green;
+    border-bottom: solid green 1px;
+}
+
+.flex-col{
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+}
+
+.graph-options .display-options{
+    float: left;
+}
+
+#top{
+    font-size: 18px;
+}
+
+#top p{
+    margin: 0;
+    text-align: center;
+}
+
+.graph-options{
+    overflow-x: scroll;
+}
+
+.graph-options .start-date-option{
+    padding-left: 5px;
+    float: right;
+}
+
+.graph-options .end-date-option{
+    float: right;
+}
+
+#display-option, #end-date-option > input, #start-date-option > input{
+    cursor: pointer;
+}
+
+.transparency{
+    opacity: 30%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+
+.transparency > #end-date-option > input,.transparency > #start-date-option > input{
+    cursor: unset;
+}
+
+#bottom{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 17px;
+    overflow-x: scroll;
+}
+
+#bottom .left-container{
+    width: 18%;
+    float: left;
+    
+}
+
+#bottom .right-container{
+    width: 80%;
+    float: right;
+    padding: 0;
+
+}
+
+.filter{
+    margin: 0;
+    background-color: #394145;
+    padding: 0;
+    color: white;
+    border: #1f2124 solid;
+    border-radius: 5px;
+}
+
+.sticky{
+    position: fixed;
+    top: 2%;
+    bottom: 2%;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    width: 15.3% ; /* the width is in percentage of the entire page -> 18%(left-container) of 85%(page-wrapper)*/
+    border: #1f2124 solid;
+    border-radius: 5px;
+}
+
+.inner-filter{
+    padding: 5%;
+}
+
+.flex-container{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.suggestions-container{
+    background-color: #333;
+    border-radius: 6px;
+}
+
+#symbol-suggestions, #fullname-suggestions{
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
+.header-suggestion{
+    border-top: 2px solid #999;
+    background-color: #161c10;
+}
+
+.suggestions > div{
+    padding: 2px;
+    font-size: 15px;
+    border-top: 1px solid #666;
+}
+
+.suggestions > div:not(.header-suggestion){
+    cursor: pointer;
+}
+
+.suggestions > div:hover:not(.header-suggestion){
+    background-color: #8c9d75 !important;
+}
+
+#reset-filter, #apply-search, #time-scale, .checkbox{
+    cursor: pointer;
+}
+
+#bottom .tables{
+    display: inline-block;
+    margin: 0;
+    min-width: 100%;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table tr th{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    margin: 2px;
+    text-align: center;
+    background-color: #a4a4a4a4;
+} 
+
+td{
+    border-bottom: 1px solid black;
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+    margin: 2px;
+    text-align: center;
+} 
+
+table tbody tr:hover{
+    background-color: #7c8484 !important;
+}
+
+table tbody tr:nth-child(odd){
+    background-color: #d1d7d4;
+}
+
+table tbody tr:nth-child(even){
+    background-color: #a4a4a4a4;
+}
+
+
+.sortable-table th:not(:first-child){
+    cursor: pointer;
+}
+
+.sortable-table .sortable-head::after{
+    content: '\2195';
+}
+
+.sortable-table .th-sorted-in-dsc::after{
+    content: '\2193';
+}
+
+.sortable-table .th-sorted-in-asc::after{
+    content: '\2191';
+}
+
+.sortable-table .sortable-head::after,
+.sortable-table .th-sorted-in-dsc::after,
+.sortable-table .th-sorted-in-asc::after{
+    margin-left: 5px;
+}
+
+.filtered-tbody{
+    position:relative;
+}
+
+#filtered-tbody > .loader-container {
+    display: flex;           
+    flex-direction: column;   
+    justify-content: center;  
+    align-items: center;     
+    position: absolute;
+    margin-top: 5%;
+    left: 50%;
+}
+
+#graph-display > .loader-container {
+    display: flex;           
+    flex-direction: column;   
+    justify-content: center;  
+    align-items: center;     
+    height: 100%;
+}
+
+.loader {
+    border: 13px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #8c9d75;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 1.3s linear infinite; /* Safari */
+    animation: spin 1.3s linear infinite;
+    margin:auto;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+}
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+ #footer{
+     height: 16px;
+ }
