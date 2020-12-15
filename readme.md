@@ -2,7 +2,7 @@
 
 This project is a final project for Carleton's Software Design Class. 
 
-*Feature Previews:*
+*Feature Previews(Youtube Link):*
 
 Graph Options Feature:
 
