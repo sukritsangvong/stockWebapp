@@ -2,6 +2,28 @@
 
 This project is a final project for Carleton's Software Design Class. 
 
+*Feature Previews:*
+
+Graph Options Feature:
+
+[![S&P 500 Webapp Project: Graph Options Feature](https://img.youtube.com/vi/kt6S3bHTISM/0.jpg)](https://youtu.be/kt6S3bHTISM)
+
+
+Select Stocks Feature:
+
+[![S&P 500 Webapp Project: Select Stocks Feature](https://img.youtube.com/vi/csYIB2hZ5jg/0.jpg)](https://youtu.be/csYIB2hZ5jg)
+
+
+Sort Tables Feature:
+
+[![S&P 500 Webapp Project: Sort Tables Feature](https://img.youtube.com/vi/K7OhFcdhk6g/0.jpg)](https://youtu.be/K7OhFcdhk6g)
+
+
+Apply Filters Feature:
+
+[![S&P 500 Webapp Project: Sort Tables Feature](https://img.youtube.com/vi/KkB5U3r7rmU/0.jpg)](https://youtu.be/KkB5U3r7rmU)
+
+
 To run this program, one needs to run update_database.sh to create and update postgreSQL database.
 
 ```
